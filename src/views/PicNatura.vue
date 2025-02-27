@@ -2,7 +2,8 @@
 import { ref } from 'vue'
 
 const images = ref([])
-const currentIndex = ref(0)
+const selectedImage = ref(null)
+const showModal = ref(false)
 
 const importAll = async () => {
   const imageModules = import.meta.glob('@/assets/Natura/*.{png,jpg,jpeg,svg}')
@@ -16,16 +17,14 @@ const importAll = async () => {
 }
 importAll()
 
-const nextImage = () => {
-  if (currentIndex.value < images.value.length - 1) {
-    currentIndex.value++
-  }
+const openModal = (image) => {
+  selectedImage.value = image
+  showModal.value = true
 }
 
-const prevImage = () => {
-  if (currentIndex.value > 0) {
-    currentIndex.value--
-  }
+const closeModal = () => {
+  showModal.value = false
+  selectedImage.value = null
 }
 </script>
 
@@ -38,20 +37,17 @@ const prevImage = () => {
   </div>
   <div class="photo-gallery">
     <h1>Natura</h1>
-    <div class="photo-container">
-      <button @click="prevImage" class="nav-button left" :disabled="currentIndex === 0">
-        Previous
-      </button>
-      <div class="photo">
-        <img :src="images[currentIndex]" alt="Pastel Photo" />
+    <div class="photo-grid">
+      <div v-for="(image, index) in images" :key="index" class="photo" @click="openModal(image)">
+        <img :src="image" alt="Natura Photo" />
       </div>
-      <button
-        @click="nextImage"
-        class="nav-button right"
-        :disabled="currentIndex === images.length - 1"
-      >
-        Next
-      </button>
+    </div>
+  </div>
+
+  <div v-if="showModal" class="modal" @click="closeModal">
+    <div class="modal-content" @click.stop>
+      <span class="close" @click="closeModal">&times;</span>
+      <img :src="selectedImage" alt="Selected Natura Photo" />
     </div>
   </div>
 </template>
@@ -89,51 +85,84 @@ const prevImage = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Ensure the gallery takes full height */
+  padding: 2rem;
 }
 
-.photo-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .photo {
-  max-width: 90%;
-  max-height: 90vh;
-  margin: 0 1rem; /* Add margin to create space for the buttons */
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.photo img:hover {
+  transform: scale(1.05);
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.modal-content img {
   width: 100%;
   height: auto;
   border-radius: 8px;
 }
 
-.nav-button {
-  background-color: rgba(0, 0, 0, 0.5);
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   color: white;
-  border: none;
-  padding: 1rem;
+  font-size: 24px;
+  font-weight: bold;
   cursor: pointer;
-  z-index: 2;
+}
+@media (max-width: 1024px) {
+  .photo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 }
 
-.nav-button.left {
-  margin-right: 2rem; /* Add margin to create space between button and image */
+@media (max-width: 768px) {
+  .photo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
 }
 
-.nav-button.right {
-  margin-left: 2rem; /* Add margin to create space between button and image */
-}
-
-.nav-button:disabled {
-  background-color: rgba(0, 0, 0, 0.2);
-  cursor: not-allowed;
-}
-
-.nav-button:hover:not(:disabled) {
-  background-color: rgba(0, 0, 0, 0.7);
+@media (max-width: 480px) {
+  .photo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
 }
 </style>
