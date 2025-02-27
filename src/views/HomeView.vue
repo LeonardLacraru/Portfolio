@@ -9,14 +9,31 @@ import { RouterLink } from 'vue-router'
       Your browser does not support the video tag.
     </video>
   </div>
-  <div class="menu-container">
-    <div class="menu">
-      <RouterLink to="/portret" class="menu-item bouton-portret">Portret</RouterLink>
-      <RouterLink to="/icoane" class="menu-item bouton-icoane">Icoane</RouterLink>
-      <RouterLink to="/lucrariPeLemn" class="menu-item bouton-lemn">Lucrari pe lemn</RouterLink>
-      <RouterLink to="/animale" class="menu-item bouton-animale">Animale</RouterLink>
-      <RouterLink to="/natura" class="menu-item bouton-natura">Natura</RouterLink>
-      <RouterLink to="/pastel" class="menu-item bouton-pastel">Pastel</RouterLink>
+  <div class="content-container">
+    <img src="@/assets/Cristi.jpg" alt="Your Photo" class="header-photo" />
+    <div class="description">
+      <p>
+        Bine ați venit în universul meu artistic, unde culoarea și emoția prind viață pe pânză și
+        dincolo de ea. Realizez picturi în ulei și în alte tehnici, explorând atât suprafețele
+        tradiționale, cât și obiecte neconvenționale, transformând fiecare lucrare într-o poveste
+        vizuală unică. Specialitatea mea este portretul, fie că este vorba despre interpretări
+        artistice sau reproduceri fidele după fotografie. De asemenea, creez icoane cu atenție la
+        detalii și peisaje ce surprind frumusețea naturii în toate formele sale. Fiecare lucrare
+        este realizată cu pasiune și dedicare, oferind nu doar o imagine, ci o experiență artistică
+        autentică. Te invit să descoperi colecția și să găsim împreună modalitatea perfectă de a
+        aduce arta în viața ta
+      </p>
+      <p>Pentru mai multe detalii sau comenzi contactează-mă la: 0755-502-017</p>
+    </div>
+    <div class="menu-container">
+      <div class="menu">
+        <RouterLink to="/portret" class="menu-item bouton-portret">Portret</RouterLink>
+        <RouterLink to="/icoane" class="menu-item bouton-icoane">Icoane</RouterLink>
+        <RouterLink to="/lucrariPeLemn" class="menu-item bouton-lemn">Lucrari pe lemn</RouterLink>
+        <RouterLink to="/animale" class="menu-item bouton-animale">Animale</RouterLink>
+        <RouterLink to="/natura" class="menu-item bouton-natura">Natura</RouterLink>
+        <RouterLink to="/pastel" class="menu-item bouton-pastel">Pastel</RouterLink>
+      </div>
     </div>
   </div>
 </template>
@@ -54,11 +71,37 @@ import { RouterLink } from 'vue-router'
   animation: fadeIn 2s ease-in-out;
 }
 
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.header-photo {
+  max-width: clamp(15rem, 5vw, 100rem); /* Adjust the max-width as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin-top: 2rem; /* Add space between the top of the viewport and the photo */
+  margin-bottom: 2rem; /* Adjust margin as needed */
+  animation: fadeIn 2s ease-in-out;
+}
+
+.description {
+  margin-bottom: 2rem;
+  font-size: clamp(0.5rem, 2.5vw, 1.2rem); /* Responsive font size */
+  color: white;
+  animation: fadeIn 2s ease-in-out;
+}
+
 .menu-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   width: 100%;
 }
 
@@ -87,7 +130,7 @@ import { RouterLink } from 'vue-router'
     background-color 0.3s ease,
     border-color 0.3s ease,
     color 0.3s ease;
-  font-size: clamp(1rem, 2.5vw, 1.7rem);
+  font-size: clamp(1rem, 2.5vw, 1.7rem); /* Responsive font size */
   border: 2px solid transparent;
 }
 
