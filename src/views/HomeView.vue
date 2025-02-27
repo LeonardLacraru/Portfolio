@@ -60,47 +60,60 @@ import { RouterLink } from 'vue-router'
   align-items: center;
   height: 100vh;
   width: 100%;
-  perspective: 1000px; /* Add perspective for 3D effect */
-  border: none; /* Remove border */
-  padding: 0; /* Ensure no padding */
-  margin: 0; /* Ensure no margin */
-  box-shadow: none; /* Ensure no box shadow */
 }
 
 .menu {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.2rem; /* Increased gap for better spacing */
-  padding: 1rem; /* Increased padding for larger menu area */
-  background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
-  border: none; /* Ensure no border */
-  transition: transform 0.1s ease; /* Smooth transition for 3D effect */
-  justify-items: center; /* Center items within the grid */
-  transform-style: preserve-3d; /* Preserve 3D transformations */
-  animation: fadeIn 2s ease-in-out; /* Apply fade-in animation */
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  justify-items: center;
+  animation: fadeIn 2s ease-in-out;
 }
 
 .menu-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60vh; /* Fixed width for all menu items */
-  height: 15vh; /* Fixed height for all menu items */
-  background-color: rgba(240, 240, 240, 0.4); /* Semi-transparent button background */
-  border: none; /* Ensure no border */
+  width: 60vh;
+  height: 15vh;
+  background-color: rgba(240, 240, 240, 0.4);
+  border: none;
   text-align: center;
   cursor: pointer;
   transition:
     background-color 0.3s ease,
     border-color 0.3s ease,
-    color 0.3s ease; /* Smooth transition for border color and font color */
-  font-size: clamp(1rem, 2.5vw, 1.7rem); /* Responsive font size */
-  border: 2px solid transparent; /* Initial border color */
+    color 0.3s ease;
+  font-size: clamp(1rem, 2.5vw, 1.7rem);
+  border: 2px solid transparent;
 }
 
 .menu-item:hover {
-  background-color: rgba(224, 224, 224, 0.8); /* Semi-transparent hover effect */
-  border-color: blue; /* Change border color to blue on hover */
-  color: blue; /* Change font color to blue on hover */
+  background-color: rgba(224, 224, 224, 0.8);
+  border-color: blue;
+  color: blue;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .menu {
+    grid-template-columns: 1fr; /* Single column layout for smaller screens */
+  }
+
+  .menu-item {
+    width: 80vw; /* Adjust width for smaller screens */
+    height: 10vh; /* Adjust height for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-item {
+    width: 90vw; /* Further adjust width for very small screens */
+    height: 8vh; /* Further adjust height for very small screens */
+    font-size: clamp(0.8rem, 4vw, 1.2rem); /* Adjust font size for very small screens */
+  }
 }
 </style>
