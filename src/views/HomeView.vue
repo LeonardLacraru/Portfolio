@@ -23,7 +23,7 @@ import { RouterLink } from 'vue-router'
         autentică. Te invit să descoperi colecția și să găsim împreună modalitatea perfectă de a
         aduce arta în viața ta
       </p>
-      <p>Pentru mai multe detalii sau comenzi contactează-mă la: 0755-502-017</p>
+      <p>Pentru mai multe informații sau comenzi: 0755-502-017</p>
     </div>
     <div class="menu-container">
       <div class="menu">
@@ -87,7 +87,7 @@ import { RouterLink } from 'vue-router'
   max-width: clamp(15rem, 5vw, 100rem); /* Adjust the max-width as needed */
   height: auto; /* Maintain aspect ratio */
   margin-top: 2rem; /* Add space between the top of the viewport and the photo */
-  margin-bottom: 2rem; /* Adjust margin as needed */
+
   animation: fadeIn 2s ease-in-out;
 }
 
@@ -149,6 +149,9 @@ import { RouterLink } from 'vue-router'
   .menu-item {
     width: 80vw; /* Adjust width for smaller screens */
     height: 10vh; /* Adjust height for smaller screens */
+  }
+  .header-photo {
+    width: clamp(10rem, 5vw, 100rem);
   }
 }
 
