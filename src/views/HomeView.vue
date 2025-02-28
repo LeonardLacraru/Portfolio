@@ -23,7 +23,7 @@ import { RouterLink } from 'vue-router'
         autentică. Te invit să descoperi colecția și să găsim împreună modalitatea perfectă de a
         aduce arta în viața ta
       </p>
-      <p>Pentru mai multe detalii sau comenzi contactează-mă la: 0755-502-017</p>
+      <p>Pentru mai multe informații sau comenzi contactează-mă la: 0755-502-017</p>
     </div>
     <div class="menu-container">
       <div class="menu">
